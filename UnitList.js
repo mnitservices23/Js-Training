@@ -12,18 +12,39 @@ function splitter(Object) {
     var make=[];
     var type=[];
     var year=[];
+  
+  var specialValue=[];
+  var Units=[];
     
     var x=0;
-    while(x<=7){
-        make[x]=Object[x][0];
-        type[x]=Object[x][1];
-         year[x]=Object[x][2];
+    while(x<=6){
+        make[x]=Object[x]["make"];
+        type[x]=Object[x]["type"];
+        year[x]=Object[x]["year"];
+      
+      if (Object[x]["year"]>=2039){
+         specialValue[x]="Future Tech"
+      }else{
+          specialValue[x]="Contemporary"
+      } 
+      
+      Units[x]=make[x]+" "+ type[x]+" "+year[x]+" "+specialValue[x];
         x++;
+      
     }
+  var objectUnits ={};
+objectUnits.Makes = make;
+  objectUnits.Types = type;
+  objectUnits.Years = year;
+   objectUnits.SpecialValues = specialValue;
+  
+ 
+  return Units;
+  return objectUnits;
     
 }
 
-splitter(UnitList);
+
 /*
  * Instructions: Given a array of units, use a loop to go through each unit.
  *   For each unit you will:
